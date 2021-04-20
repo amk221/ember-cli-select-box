@@ -1,5 +1,5 @@
 export function registerSelectedOption(selectBox, selectedOption) {
-  selectBox.selectedOption = [...selectBox.selectedOption, selectedOption];
+  selectBox.selectedOption.push(selectedOption);
 }
 
 export function deregisterSelectedOption(selectBox, selectedOption) {
@@ -7,5 +7,4 @@ export function deregisterSelectedOption(selectBox, selectedOption) {
     selectBox.selectedOption.indexOf(selectedOption),
     1
   );
-  selectBox.selectedOption = [...selectBox.selectedOption];
 }

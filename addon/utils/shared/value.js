@@ -1,9 +1,12 @@
 import { resolveValue } from '../component/value';
 import { makeArray } from '@ember/array';
+import { modifier } from 'ember-modifier';
 const { freeze } = Object;
 
 export function receiveValue(selectBox) {
-  updateValue(selectBox, selectBox.args.value);
+  return modifier((element, [value]) => {
+    updateValue(selectBox, value);
+  });
 }
 
 export function updateValue(selectBox, value) {

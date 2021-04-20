@@ -1,5 +1,8 @@
-export function ready(selectBox) {
-  selectBox.isReady = true;
+import { modifier } from 'ember-modifier';
 
-  selectBox.args.onReady?.(selectBox.api);
+export default function (selectBox) {
+  return modifier(() => {
+    selectBox.isReady = true;
+    selectBox.args.onReady?.(selectBox.api);
+  });
 }

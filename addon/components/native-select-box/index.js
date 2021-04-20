@@ -1,9 +1,7 @@
 import Component from '@glimmer/component';
 import NativeSelectBoxOption from './option/index';
-import {
-  deregisterElement,
-  registerElement
-} from '../../utils/registration/element';
+import registerElement from '../../utils/registration/element';
+import registerComponents from '../../utils/registration/components';
 import {
   deregisterOption,
   registerOption
@@ -15,7 +13,7 @@ import {
 } from '../../utils/shared/value';
 import { selectValue as _selectValue } from '../../utils/native-select-box/value';
 import buildAPI from '../../utils/shared/api';
-import { ready } from '../../utils/shared/ready';
+import ready from '../../utils/shared/ready';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
@@ -65,23 +63,11 @@ export default class NativeSelectBox extends Component {
 
   constructor() {
     super(...arguments);
-    receiveValue(this);
-  }
 
-  @action
-  handleInsertElement(element) {
-    registerElement(this, element);
-    ready(this);
-  }
-
-  @action
-  handleDestroyElement() {
-    deregisterElement(this);
-  }
-
-  @action
-  handleUpdateValue() {
-    receiveValue(this);
+    this.ready = ready(this);
+    this.receiveValue = receiveValue(this);
+    this.registerComponents = registerComponents(this);
+    this.registerElement = registerElement(this);
   }
 
   @action

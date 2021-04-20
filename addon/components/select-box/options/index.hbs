@@ -8,8 +8,7 @@
   onclick={{@onclick}}
   {{!-- end issue --}}
   ...attributes
-  {{did-insert this.handleInsertElement}}
-  {{will-destroy this.handleDestroyElement}}
+  {{this.lifecycleActions}}
 >
   {{yield}}
 </div>

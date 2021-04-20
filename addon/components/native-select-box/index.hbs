@@ -11,9 +11,9 @@
   class="select-box"
   multiple={{this.isMultiple}}
   ...attributes
-  {{did-insert this.handleInsertElement}}
-  {{did-update this.handleUpdateValue @value}}
-  {{will-destroy this.handleDestroyElement}}
+  {{this.registerElement}}
+  {{this.ready}}
+  {{this.receiveValue @value}}
   {{on "change" this.handleChange}}
 >
   {{yield this.api}}

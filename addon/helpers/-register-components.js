@@ -1,6 +1,8 @@
 import { helper } from '@ember/component/helper';
-import registerComponents from '../utils/registration/components';
 
+const { assign } = Object;
+
+// TODO: Delete me after this RFC: https://github.com/emberjs/rfc-tracking/issues/6
 export default helper(function ([component], components) {
-  registerComponents(component, components);
+  assign(component, components);
 });

@@ -1,7 +1,10 @@
 import { resolve } from 'rsvp';
+import { modifier } from 'ember-modifier';
 
 export function receiveValue(component) {
-  resolveValue(component, component.args.value);
+  return modifier((element, [value]) => {
+    resolveValue(component, value);
+  });
 }
 
 export function resolveValue(component, value, postProcess) {

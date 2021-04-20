@@ -7,9 +7,9 @@
   id={{this.id}}
   role="option"
   ...attributes
-  {{did-insert this.handleInsertElement}}
-  {{did-update this.handleUpdateValue @value}}
-  {{will-destroy this.handleDestroyElement}}
+  {{this.registerElement}}
+  {{this.lifecycleActions}}
+  {{this.receiveValue @value}}
   {{on "mouseenter" this.handleMouseEnter}}
   {{on "focus" this.handleFocus}}
   {{on "click" this.handleClick}}

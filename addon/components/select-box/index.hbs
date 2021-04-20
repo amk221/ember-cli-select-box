@@ -46,9 +46,9 @@
   role={{this.role}}
   tabindex={{this.tabIndex}}
   ...attributes
-  {{did-insert this.handleInsertElement}}
-  {{did-update this.handleUpdateValue @value}}
-  {{will-destroy this.handleDestroyElement}}
+  {{this.registerElement}}
+  {{this.ready}}
+  {{this.receiveValue @value}}
   {{on "focusout" this.handleFocusOut}}
   {{on "keyup" this.handleKeyUp}}
   {{on "keydown" this.handleKeyDown}}

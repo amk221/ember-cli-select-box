@@ -1,12 +1,6 @@
 import Component from '@glimmer/component';
-import {
-  _destroyComponent,
-  _insertComponent
-} from '../../../utils/component/lifecycle';
-import {
-  deregisterElement,
-  registerElement
-} from '../../../utils/registration/element';
+import lifecycleActions from '../../../utils/component/lifecycle';
+import registerElement from '../../../utils/registration/element';
 import { input, keyUp } from '../../../utils/select-box/input/keyboard';
 import { action } from '@ember/object';
 import buildId from '../../../utils/shared/id';
@@ -14,20 +8,12 @@ import buildId from '../../../utils/shared/id';
 export default class SelectBoxInput extends Component {
   element = null;
 
-  get id() {
-    return buildId(this);
-  }
+  constructor() {
+    super(...arguments);
 
-  @action
-  handleInsertElement(element) {
-    registerElement(this, element);
-    _insertComponent(this);
-  }
-
-  @action
-  handleDestroyElement() {
-    deregisterElement(this);
-    _destroyComponent(this);
+    this.id = buildId(this);
+    this.registerElement = registerElement(this);
+    this.lifecycleActions = lifecycleActions(this);
   }
 
   @action

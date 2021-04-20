@@ -3,9 +3,9 @@
   selected={{this.isSelected}}
   value={{this.value}}
   ...attributes
-  {{did-insert this.handleInsertElement}}
-  {{did-update this.handleUpdateValue @value}}
-  {{will-destroy this.handleDestroyElement}}
+  {{this.registerElement}}
+  {{this.lifecycleActions}}
+  {{this.receiveValue @value}}
 >
   {{~yield this.api~}}
 </option>

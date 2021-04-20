@@ -1,7 +1,9 @@
-export function registerElement(component, element) {
-  component.element = element;
-}
+import { modifier } from 'ember-modifier';
 
-export function deregisterElement(component) {
-  component.element = null;
+export default function registerElement(selectBox) {
+  return modifier((element) => {
+    selectBox.element = element;
+
+    return () => (selectBox.element = null);
+  });
 }

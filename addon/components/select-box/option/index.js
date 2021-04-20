@@ -1,14 +1,8 @@
 import Component from '@glimmer/component';
 import { _activateOption } from '../../../utils/select-box/option/activate';
-import {
-  _destroyComponent,
-  _insertComponent
-} from '../../../utils/component/lifecycle';
+import lifecycleActions from '../../../utils/component/lifecycle';
 import { _selectOption } from '../../../utils/select-box/option/select';
-import {
-  deregisterElement,
-  registerElement
-} from '../../../utils/registration/element';
+import registerElement from '../../../utils/registration/element';
 import { receiveValue } from '../../../utils/component/value';
 import isSelected from '../../../utils/shared/selected';
 import buildAPI from '../../../utils/shared/api';
@@ -43,10 +37,6 @@ export default class SelectBoxOption extends Component {
     ]);
   }
 
-  get id() {
-    return buildId(this);
-  }
-
   get index() {
     return this.args.selectBox ? this.args.selectBox.option.indexOf(this) : -1;
   }
@@ -67,24 +57,11 @@ export default class SelectBoxOption extends Component {
 
   constructor() {
     super(...arguments);
-    receiveValue(this);
-  }
 
-  @action
-  handleInsertElement(element) {
-    registerElement(this, element);
-    _insertComponent(this);
-  }
-
-  @action
-  handleDestroyElement() {
-    deregisterElement(this);
-    _destroyComponent(this);
-  }
-
-  @action
-  handleUpdateValue() {
-    receiveValue(this);
+    this.id = buildId(this);
+    this.lifecycleActions = lifecycleActions(this);
+    this.receiveValue = receiveValue(this);
+    this.registerElement = registerElement(this);
   }
 
   @action
